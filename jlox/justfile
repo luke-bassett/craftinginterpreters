@@ -1,0 +1,26 @@
+default: lox
+
+pkg_prefix := "com/craftinginterpreters"
+pkg_path := pkg_prefix + "/lox"
+tool_path := pkg_prefix + "/tool"
+pkg_class_path := "bin/" + pkg_path
+tool_class_path := "bin/" + tool_path
+
+tools:
+    @javac -d bin -Xlint:unchecked {{tool_path}}/*.java
+
+generate-ast: tools
+    @java -cp bin com.craftinginterpreters.tool.GenerateAst {{pkg_path}}
+
+lox: generate-ast
+    @javac -d bin -Xlint:unchecked {{pkg_path}}/*.java
+
+# REPL if no file is provided
+run lox_file="": lox
+    @java -cp bin com.craftinginterpreters.lox.Lox {{lox_file}}
+
+clean:
+    @rm -rf bin
+
+deep-clean: clean
+    @rm {{pkg_path}}/Expr.java

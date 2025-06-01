@@ -1,0 +1,4 @@
+{
+    "java.project.sourcePaths": ["jlox"],
+    "java.project.outputPath": "jlox/bin"
+}
