@@ -24,3 +24,7 @@ clean:
 
 deep-clean: clean
     @rm {{pkg_path}}/Expr.java
+
+format:
+    @find {{pkg_path}} {{tool_path}} -name "*.java" -exec google-java-format -i {} +
+
