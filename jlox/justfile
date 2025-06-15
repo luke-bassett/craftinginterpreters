@@ -29,3 +29,5 @@ deep-clean: clean
 format:
     @find {{pkg_path}} {{tool_path}} -name "*.java" -exec google-java-format -i {} +
 
+checkstyle:
+    @find {{pkg_path}} {{tool_path}} -name "*.java" -exec java -jar tools/checkstyle.jar -c tools/google_checks.xml {} +
