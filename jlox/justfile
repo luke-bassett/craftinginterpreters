@@ -11,6 +11,7 @@ tools:
 
 generate-ast: tools
     @java -cp bin com.craftinginterpreters.tool.GenerateAst {{pkg_path}}
+    @just format
 
 lox: generate-ast
     @javac -d bin -Xlint:unchecked {{pkg_path}}/*.java
